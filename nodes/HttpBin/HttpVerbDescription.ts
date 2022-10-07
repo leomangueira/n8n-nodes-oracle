@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-display-name-not-first-position */
 import { INodeProperties } from 'n8n-workflow';
 
 // When the resource `httpVerb` is selected, this `operation` parameter will be shown.

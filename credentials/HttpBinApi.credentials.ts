@@ -2,13 +2,13 @@ import {
 	IAuthenticateGeneric,
 	ICredentialTestRequest,
 	ICredentialType,
-	INodeProperties,
+	INodeProperties
 } from 'n8n-workflow';
 
 export class HttpBinApi implements ICredentialType {
 	name = 'httpbinApi';
 	displayName = 'HttpBin API';
-	documentationUrl = '<your-docs-url>';
+	documentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Token',
@@ -28,14 +28,14 @@ export class HttpBinApi implements ICredentialType {
 	// stating how this credential is injected as part of the request
 	// An example is the Http Request node that can make generic calls
 	// reusing this credential
-	authenticate = {
+	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			headers: {
 				Authorization: '={{"Bearer " + $credentials.token}}',
 			},
 		},
-	} as IAuthenticateGeneric;
+	};
 
 	// The block below tells how this credential can be tested
 	test: ICredentialTestRequest = {
