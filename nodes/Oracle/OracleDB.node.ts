@@ -23,6 +23,9 @@ import {
 	formatColumns,
 } from './GenericFunctions';
 
+import { chunk, flatten } from '../../utils/utilities';
+import { ITables } from './TableInterface';
+
 import { Knex, knex } from 'knex';
 import oracledb from 'oracledb';
 
@@ -429,8 +432,8 @@ export class OracleDB implements INodeType {
 				);
 
 				const rowsDeleted = flatten(queriesResults).reduce(
-					(acc: number, resp: oracledb.IResult<object>): number =>
-						(acc += resp.rowsAffected.reduce((sum: any, val: any) => (sum += val))),
+					(acc: number, resp: oracledb.Result<object>): number =>
+						(acc += resp.rowsAffected.reduce((sum: number, val: number) => (sum += val))),
 					0,
 				);
 
