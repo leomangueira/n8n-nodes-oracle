@@ -37,7 +37,7 @@
 		"nodes": [
 			"dist/nodes/ExampleNode/ExampleNode.node.js",
 			"dist/nodes/HttpBin/HttpBin.node.js",
-			"dist/nodes/Oracle/OracleDB.node.js"
+			"dist/nodes/OracleDB/OracleDB.node.js"
 		]
 	},
 	"devDependencies": {

@@ -415,7 +415,7 @@ export class OracleDB implements INodeType {
 								),
 								1000,
 							);
-							const queryQueue = deleteItemsList.map((deleteValues: IDataObject[]) => {
+							const queryQueue = deleteItemsList.map((deleteValues) => {
 								return pool
 									.request()
 									.query(
@@ -433,9 +433,13 @@ export class OracleDB implements INodeType {
 
 				const rowsDeleted = flatten(queriesResults).reduce(
 					(acc: number, resp: oracledb.Result<object>): number =>
-						(acc += resp.rowsAffected.reduce((sum: number, val: number) => (sum += val))),
+						(acc += resp.rowsAffected.reduce((sum: any, val: any) => (sum += val))),
 					0,
 				);
+
+				const options = { dmlRowCounts: true };
+				const result = await knex.executeMany(rowsDeleted, queriesResults, options);
+				console.log(result.dmlRowCounts);
 
 				responseData = rowsDeleted;
 			} else {
